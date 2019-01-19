@@ -16,14 +16,18 @@ use TCG\Voyager\Models\Page as Page;
 use TCG\Voyager\Models\Post as Post;
 
 use App\Models\Social;
-use App\Models\Benefit;
+use App\Models\Product;
 use App\Models\Banner;
+use App\Models\Gallery;
 use App\Models\Request as Req;
 
 class HomeController extends Controller
 {
-    private $per_page=6;
-    private $post_per_home=5;
+    private $per_page=3;
+    private $product_paginate=4;
+    private $post_per_home=3;
+    private $gallery_per_home=8;
+    private $product_per_home=6;
     private $banner_per_home=3;
     private $cache_minutes=1;
     
@@ -34,14 +38,17 @@ class HomeController extends Controller
     
    
     public function home_page(){
-        $benefits=Benefit::withTranslations(App::getLocale())->get();
         $posts=Post::withTranslations(App::getLocale())->limit($this->post_per_home)->get();
-        $banners=Banner::withTranslations(App::getLocale())->limit($this->banner_per_home)->get();
-        $department = Cache::remember('categories'.App::getLocale(), $this->cache_minutes, function (){
-            $categories=Category::with('children')->withTranslations(App::getLocale())->get();
-            return view('front.home.includes.department',compact(['categories']))->render();
-        });
-        return view('front.home.home',compact(['benefits','posts','banners','department']));
+        $banners=Banner::withTranslations(App::getLocale())->orderBy('order')->limit($this->banner_per_home)->get();
+        $products=Product::with('categories')->withTranslations(App::getLocale())->limit($this->product_per_home)->get();
+        $categories=Category::withTranslations(App::getLocale())->get();
+        $galleries=Gallery::withTranslations(App::getLocale())->limit($this->gallery_per_home)->get();
+        // $department = Cache::remember('categories'.App::getLocale(), $this->cache_minutes, function (){
+        //     $categories=Category::with('children')->withTranslations(App::getLocale())->get();
+        //     return view('front.home.includes.department',compact(['categories']))->render();
+        // });
+        
+        return view('front.home.home',compact(['products','posts','banners','categories','galleries']));
     }
     
     
@@ -52,6 +59,8 @@ class HomeController extends Controller
     }
     
     
+    
+    
     public function blog_index(){
         $posts=Post::with('authorId')->withTranslations(App::getLocale())->paginate($this->per_page);
         return view('front.blog.index',compact('posts'));
@@ -59,6 +68,27 @@ class HomeController extends Controller
     public function blog_show(Post $post, $slug){
         return view('front.blog.show',compact('post'));
     }
+    
+    
+    
+    
+    public function product_index(){
+        $products=Product::with('categories')->withTranslations(App::getLocale())->paginate($this->product_paginate);
+        return view('front.shop.index',compact('products'));
+    }
+    public function product_show(Product $product){
+        return view('front.shop.show',compact('product'));
+    }
+    
+    
+    
+    public function gallery_index(){
+        $galleries=Gallery::withTranslations(App::getLocale())->paginate($this->product_paginate);
+        return view('front.gallery.index',compact('galleries'));
+    }
+    
+    
+    
     
     
     public function category_show(Category $category, $slug){

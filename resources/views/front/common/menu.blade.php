@@ -1,16 +1,4 @@
 
-@php
-	if(!isset($innerLoop)){
-		if(Helper::isRtl()){
-			$items=$items->sortByDesc('id');
-		}
-		echo '<ul class="sf-menu">';
-	}else{
-	
-		echo '<ul>';
-	}
-	
-@endphp
 
 
 @foreach ($items as $item)
@@ -54,6 +42,7 @@
        
     @endphp
     
+
 	<li>
 		<a href="{{$item->link()}}">
 			@if(!isset($innerLoop))
@@ -75,4 +64,4 @@
 
 @endforeach
 
-</ul>
+

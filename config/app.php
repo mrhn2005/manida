@@ -84,12 +84,11 @@ return [
     
     'locales' => [
         'en' => 'English',
-        'ar' => 'Arabic',
+        'am' => 'Armeni',
         // Add as many languages you want
     ],
     
     'rtlLocales'=>[
-       'ar' => 'Arabic', 
         
     ],
     /*
