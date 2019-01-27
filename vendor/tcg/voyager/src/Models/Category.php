@@ -50,4 +50,8 @@ class Category extends Model
         return route('category.show',[$this->id,$this->slug]);
     }
     
+    public function products(){
+        return $this->belongsToMany('App\Models\Product');
+    }
+    
 }

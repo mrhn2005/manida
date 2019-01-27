@@ -3,7 +3,7 @@
         <div class="auto-container">
             <!--Section Title-->
             <div class="sec-title-one">
-                <h2>Welcome to our healthy form</h2>
+                <h2>{{ $page->getTranslatedAttribute('excerpt') }}</h2>
             </div>
                         
             <div class="row clearfix">
@@ -32,7 +32,7 @@
                                     <!--Tab-->
                                     <div class="tab" id="tab-one">
                                     	<div class="subtitle">{{ $page->getTranslatedAttribute('title') }}</div>
-                                    	<h3>Have look at out beautiful farm </h3>
+                                    	
                                         <div class="content">
                                         	{!! $page->getTranslatedAttribute('body') !!}
                                         </div>

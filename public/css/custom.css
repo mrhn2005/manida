@@ -1,6 +1,7 @@
 
 .main-menu .navigation > li {
      padding: 0px 0px; 
+     margin-left:35px;
 }
 .main-header .main-box .logo-box {
      padding: 0px 0px; 
@@ -37,4 +38,22 @@
     background: none;
     color: #5ec79c;
     border-color: #5ec79c;
+}
+
+.flag{
+	height:12px;
+}
+
+.main-menu .navigation > li > ul {
+    max-width:150px;
+    
+}
+
+
+.social-networks{
+    font-size:130% !important;
+}
+
+.logo img {
+    max-height: 75px;
 }

@@ -22,7 +22,7 @@ class Helper
     
     //Front end menu view
     public static function menu(){
-        $minutes=1;
+        $minutes=0;
         $menu = Cache::remember('menu'.App::getLocale(), $minutes, function (){
             $categories= Category::withTranslations()->get();
             return menu('front','front.common.menu',['categories'=>$categories]);

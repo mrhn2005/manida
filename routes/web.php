@@ -13,6 +13,7 @@
 
 
 
+
 Route::middleware(['web', 'localized'])
     ->prefix(request()->segment(1))
     ->group(function () {
@@ -25,20 +26,21 @@ Route::middleware(['web', 'localized'])
     Route::get('/blog/{post}/{slug}','Front\HomeController@blog_show')->name('blog.show');
     Route::get('/blog','Front\HomeController@blog_index')->name('blog.index');
     
-    Route::get('/products','Front\HomeController@product_index')->name('product.index');
-    Route::get('/products/{product}/{slug?}','Front\HomeController@product_show')->name('product.show');
+    Route::get('/product','Front\HomeController@product_index')->name('product.index');
+    Route::get('/product/{product}/{slug?}','Front\HomeController@product_show')->name('product.show');
     
     
     Route::get('/gallery','Front\HomeController@gallery_index')->name('gallery.index');
     
-    Route::get('/service/{category}/{slug}','Front\HomeController@category_show')->name('category.show');
-    Route::post('/service/request/store','Front\HomeController@category_request')->name('category.request');
+    Route::get('/category/{category}/{slug}','Front\HomeController@category_show')->name('category.show');
+    Route::post('/category/request/store','Front\HomeController@category_request')->name('category.request');
     
 });
 
 
+
 Route::name('locale.switch')->get('switch/{locale}', 'Front\HomeController@local_switch');
 
-Route::group(['prefix' => 'admin'], function () {
+Route::group(['prefix' => 'myadmin'], function () {
     Voyager::routes();
 });

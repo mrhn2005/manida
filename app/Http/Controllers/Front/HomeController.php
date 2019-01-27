@@ -24,7 +24,8 @@ use App\Models\Request as Req;
 class HomeController extends Controller
 {
     private $per_page=3;
-    private $product_paginate=4;
+    private $product_paginate=9;
+    private $gallery_paginate=9;
     private $post_per_home=3;
     private $gallery_per_home=8;
     private $product_per_home=6;
@@ -32,7 +33,6 @@ class HomeController extends Controller
     private $cache_minutes=1;
     
     public function __construct() {
-       
        View::share ( ['socials'=>Social::withTranslations(App::getLocale())->get()] );
     }
     
@@ -43,12 +43,13 @@ class HomeController extends Controller
         $products=Product::with('categories')->withTranslations(App::getLocale())->limit($this->product_per_home)->get();
         $categories=Category::withTranslations(App::getLocale())->get();
         $galleries=Gallery::withTranslations(App::getLocale())->limit($this->gallery_per_home)->get();
+        $page=Page::where('slug','about-us')->firstOrFail();
         // $department = Cache::remember('categories'.App::getLocale(), $this->cache_minutes, function (){
         //     $categories=Category::with('children')->withTranslations(App::getLocale())->get();
         //     return view('front.home.includes.department',compact(['categories']))->render();
         // });
         
-        return view('front.home.home',compact(['products','posts','banners','categories','galleries']));
+        return view('front.home.home',compact(['products','posts','banners','categories','galleries','page']));
     }
     
     
@@ -83,7 +84,7 @@ class HomeController extends Controller
     
     
     public function gallery_index(){
-        $galleries=Gallery::withTranslations(App::getLocale())->paginate($this->product_paginate);
+        $galleries=Gallery::withTranslations(App::getLocale())->paginate($this->gallery_paginate);
         return view('front.gallery.index',compact('galleries'));
     }
     
@@ -92,11 +93,11 @@ class HomeController extends Controller
     
     
     public function category_show(Category $category, $slug){
-        return view('front.service.index',compact('category'));
+        $products=$category->products()->paginate($this->product_paginate);
+        return view('front.shop.index',compact('products'));
     }
     public function category_request(Request $request){
         Req::create($request->all());
-        
         return redirect()->back()->with([
             'message'=>trans('messages.success_created'),
             'alert-type'=>'success'

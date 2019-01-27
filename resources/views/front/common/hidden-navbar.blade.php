@@ -9,23 +9,21 @@
         
             <!-- .logo -->
             <div class="logo text-center">
-                <a href="index.html"><img src="images/logo-4.png" alt=""></a>			
+                <a href="index.html"><img src="{{Voyager::image(setting('site.logo'))}}" alt=""></a>			
             </div><!-- /.logo -->
             
             <!-- .Side-menu -->
             <div class="side-menu">
             <!-- .navigation -->
-                <ul class="navigation">
+                <!--<ul class="navigation">-->
                     {!!	 Helper::menu()  !!}
-                </ul>
+                    
+                <!--</ul>-->
             </div><!-- /.Side-menu -->
         
             <div class="social-icons">
                 <ul>
-                    <li><a href="index.html#"><i class="fa fa-facebook"></i></a></li>
-                    <li><a href="index.html#"><i class="fa fa-twitter"></i></a></li>
-                    <li><a href="index.html#"><i class="fa fa-google-plus"></i></a></li>
-                    <li><a href="index.html#"><i class="fa fa-linkedin"></i></a></li>
+                    @include('front.common.social-links')
                 </ul>
             </div>
         

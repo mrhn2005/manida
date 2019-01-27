@@ -1,33 +1,21 @@
-@extends('front.layout.front')
+@extends('front.layout.page')
 
 @section('title')
-	{{setting('site.title')}}
+	{{setting('site.title')}} | gallery
 @endsection
 
-@section('content')	
-	<div class="page-wrapper">
+@section('page_name')	
+Our Gallery
+@endsection
 
-	<!-- Header Start -->
-	@include('front.common.header')
-	<!-- Header End -->
-
-    <!-- Hidden Navigation Bar -->
-    @include('front.common.hidden-navbar')
-    <!-- / Hidden Bar -->
-    
-    <section class="page-title" style="background-image:url(/images/background/bg-page-title-1.jpg);">
-        <div class="auto-container">
-            <h1>Our Gallery</h1>
-        </div>
-    </section>
-    
-
-    @include('front.gallery.includes.gallery')
         
-    <!--Main Footer / Footer Style One-->
-    @include('front.common.footer')
-
-	</div>
+@section('page_content')
+     
+     @include('front.gallery.includes.gallery')
 
 @endsection
+
+	
+
+
 

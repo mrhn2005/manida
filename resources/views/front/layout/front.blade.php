@@ -3,7 +3,12 @@
 <head>
 <meta charset="utf-8">
 <title>
-	@yield('title')	
+	@hasSection('title')
+    	@yield('title')
+    @else
+     	{{setting(App::getLocale().'.title')}}	
+    @endif
+	
 </title>
 <!-- Stylesheets -->
 <link href="/css/bootstrap.css" rel="stylesheet">

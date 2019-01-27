@@ -6,7 +6,7 @@
         	<div class="outer-container clearfix">
                 <!--Logo Box-->
                 <div class="logo-box">
-                    <div class="logo"><a href="index.html"><img src="/images/logo.png" alt=""></a></div>
+                    <div class="logo"><a href="index.html"><img src="{{Voyager::image(setting('site.logo'))}}" alt=""></a></div>
                 </div>
                 
                 <!--Nav Outer-->
@@ -23,9 +23,10 @@
                         </div>
                         
                         <div class="navbar-collapse collapse clearfix">
-                            <ul class="navigation clearfix">
+                            <!--<ul class="navigation clearfix">-->
                                 {!!	 Helper::menu()  !!}
-                             </ul>
+                                
+                             <!--</ul>-->
                         </div>
                     </nav><!-- Main Menu End-->
                     

@@ -15,13 +15,9 @@
                         <div class="social-links">
                             <h3>Follow Us On:</h3>
                             <div class="links">
-                                <a href="index-2.html#"><span class="fa fa-facebook-official"></span></a>
-                                <a href="index-2.html#"><span class="fa fa-twitter"></span></a>
-                                <a href="index-2.html#"><span class="fa fa-google-plus"></span></a>
-                                <a href="index-2.html#"><span class="fa fa-instagram"></span></a>
-                                <a href="index-2.html#"><span class="fa fa-vimeo-square"></span></a>
-                                <a href="index-2.html#"><span class="fa fa-youtube-play"></span></a>
-                                <a href="index-2.html#"><span class="fa fa-dropbox"></span></a>
+                                @foreach($socials as $social)
+                                    <a class="social-networks" href="{{$social->getTranslatedAttribute('link')}}"><i class="{{$social->icon}}"></i></a>
+                                @endforeach
                             </div>
                         </div>
                         

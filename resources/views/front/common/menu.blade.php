@@ -1,11 +1,27 @@
 
 
+@if(!isset($innerLoop))
+<ul class="navigation">
+ 
+@else
+<ul>
+
+@endif
+
+@php
+
+    if (Voyager::translatable($items)) {
+        $items = $items->load('translations');
+    }
+
+@endphp
+
 
 @foreach ($items as $item)
 
     @php
         $originalItem = $item;
-        if($item->title=='Packages'){
+        if($item->title=='Products'){
             $originalItem->children=$options->categories->where('parent_id',null)->all();
         }
 
@@ -26,13 +42,13 @@
         // With Children Attributes
         if(count($originalItem->children)>0) {
             $linkAttributes =  'class="dropdown-toggle" data-toggle="dropdown"';
-            $caret = '<span class="caret"></span>';
+            $caret = '';
 
-            // if(url($item->link()) == url()->current()){
-            //     $listItemClass = 'dropdown active';
-            // }else{
-            //     $listItemClass = 'dropdown';
-            // }
+             if(url($item->link()) == url()->current()){
+                 $listItemClass = 'dropdown active';
+             }else{
+                 $listItemClass = 'dropdown';
+             }
         }
 
         // Set Icon
@@ -42,8 +58,7 @@
        
     @endphp
     
-
-	<li>
+	<li class="{{ $listItemClass }}">
 		<a href="{{$item->link()}}">
 			@if(!isset($innerLoop))
 			<span class="menu-description">
@@ -63,5 +78,8 @@
 	</li>
 
 @endforeach
-
-
+@if(!isset($innerLoop))
+@include('front.common.language-selector')
+@endif
+</ul>
+ 

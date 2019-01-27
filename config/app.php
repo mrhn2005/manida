@@ -84,7 +84,7 @@ return [
     
     'locales' => [
         'en' => 'English',
-        'am' => 'Armeni',
+        'am' => 'Armenian',
         // Add as many languages you want
     ],
     
