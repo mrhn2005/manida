@@ -6,7 +6,7 @@
                 
                 <div class="column centered-column">
                     <div class="footer-widget about-widget">
-                        <figure class="footer-logo"><a href="index.html"><img src="images/logo-2.png" alt=""></a></figure>
+                        <figure class="footer-logo"><a href="{{route('home')}}"><img src="{{Voyager::image(setting('site.logo'))}}" alt=""></a></figure>
                         
                         <div class="text">
                             <p>Vestibulum facilisis rhoncus tempor. Duis non ipsum volutpat, rhoat nacus nisi sed, pulvinar ex. Etiam sit amet libero consea</p>

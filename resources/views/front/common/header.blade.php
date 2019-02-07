@@ -6,7 +6,7 @@
         	<div class="outer-container clearfix">
                 <!--Logo Box-->
                 <div class="logo-box">
-                    <div class="logo"><a href="index.html"><img src="{{Voyager::image(setting('site.logo'))}}" alt=""></a></div>
+                    <div class="logo"><a href="{{route('home')}}"><img src="{{Voyager::image(setting('site.logo'))}}" alt=""></a></div>
                 </div>
                 
                 <!--Nav Outer-->
